@@ -34,5 +34,8 @@
 			?>
 			</tbody>
 		</table>
+		<div>
+			<a href="/index.php/board/write" class="btn">Write</a>
+		</div>
 
 </div>

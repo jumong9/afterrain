@@ -41,6 +41,32 @@ class Board extends CI_Controller {
 	}
 
 
+	public function write(){
+
+		$this->load->view('head');
+		
+		$this->load->library('form_validation');
+ 
+        $this->form_validation->set_rules('comp_name', 'Company Name', 'required');
+        $this->form_validation->set_rules('comp_phone', 'Phone', 'required');
+         
+        if ($this->form_validation->run() == FALSE){
+             
+             $this->load->view('/board/mwrite');
+       
+        } else {
+        	
+            $comp_id = $this->board_model->createCompany($this->input->post('comp_name'),
+            											 $this->input->post('comp_phone'),
+            											 $this->input->post('comp_fax'),
+            											 $this->input->post('comp_addr'));
+            $this->load->helper('url');
+            redirect('/board/read/'.$comp_id);
+        }	
+
+		$this->load->view('bottom');
+	}
+
 }
 	
 ?>
